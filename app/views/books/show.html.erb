@@ -1,0 +1,7 @@
+<h1>Book detil</h1>
+<%=attachment_image_tag @book.user, :profile_image, :fill, 60, 60, fot: "jpg", fallback: "no_image.jpg" %>
+<p><%= @book.title %></p>
+<p><%= @book.body %></p>
+<% if @book.user_id == current_user.id %>
+<p><%= link_to "edit", edit_book_path(@book) %></P>
+<% end %>
