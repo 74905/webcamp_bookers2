@@ -7,7 +7,7 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
-<h2>User info</h2>
+<h3>User info</h3>
 <%=attachment_image_tag current_user, :profile_image, :fill, 60, 60, fot: "jpg", fallback: "no_image.jpg" %>
 <table class="table">
   <tbody>
@@ -27,7 +27,7 @@
 <i class="fas fa-user-cog"></i>
 <% end %>
 </div>
-<h2>New book</h2>
+<h3>New book</h3>
 <%= render "books/newbook", book: @book %>
 </div>
 <div class="col-md-8 offset-md-1">
