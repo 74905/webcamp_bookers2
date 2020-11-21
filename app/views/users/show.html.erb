@@ -1,11 +1,37 @@
-<% if @book.errors.any? %>
-<%= @book.errors.count %>errors prohibited this obj from being saved:
-<% @book.errors.full_messages.each do |message| %>
+<% if @newbook.errors.any? %>
+<%= @newbook.errors.count %>errors prohibited this obj from being saved:
+<% @newbook.errors.full_messages.each do |message| %>
 <%= message %>
 <% end %>
 <% end %>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+<h1>User info</h1>
+<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fot: "jpg", fallback: "no_image.jpg" %>
+<table class="table">
+    <tbody>
+    <tr></tr>
+    <tr>
+    <th>name</th>
+    <th><%= @user.name %></th>
+    </tr>
+    <th>introduction</th>
+    <th><%= @user.introduction %></th>
+    </tr>
+    </tbody>
+    </table>
+<div class="row">
+<%= link_to edit_user_path(@user.id), class:"btn btn-outline-secondary btn-block" do %>
+<i class="fas fa-user-cog"></i>
+<% end %>
+</div>
+<h1>New book</h1>
+<%= render "books/newbook", book: @newbook %>
+</div>
+<div class="col-md-8 offset-md-1">
 <h1>Books</h1>
- <table>
+<table class="table table-striped table-inverse">
     <thead>
       <tr>
       <th></th>
@@ -27,13 +53,7 @@
   <% end %>
   </tbody>
   </table>
-  <%= paginate @books %>
-<h1>User info</h1>
-<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fot: "jpg", fallback: "no_image.jpg" %> 
-<p>name</p>
-<%= @user.name %>
-<p>introduction</p>
-<%= @user.introduction %>
-  
-<h1>New Book</h1>
-<%= render "books/newbook", book: @newbook %>
+  </div>
+  </div>
+  </div>
+
