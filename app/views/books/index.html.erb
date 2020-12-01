@@ -1,6 +1,6 @@
-<% if @book.errors.any? %>
-<%= @book.errors.count %>errors prohibited this obj from being saved:
-<% @book.errors.full_messages.each do |message| %>
+<% if @newbook.errors.any? %>
+<%= @newbook.errors.count %>errors prohibited this obj from being saved:
+<% @newbook.errors.full_messages.each do |message| %>
 <%= message %>
 <% end %>
 <% end %>
@@ -28,7 +28,7 @@
 <% end %>
 </div>
 <h3>New book</h3>
-<%= render "books/newbook", book: @book %>
+<%= render "books/newbook", book: @newbook %>
 </div>
 <div class="col-md-8 offset-md-1">
 <h2>Books</h2>
@@ -50,7 +50,16 @@
          <%= book.title %></td>
          <% end %>
   <td><%= book.body %></td>
-  <td>コメント数:<%=@book.book_comments.count %></td>
+  <% if book.favorited_by?(current_user) %>
+  <td><%= link_to book_favorites_path(book), method: :delete do %>
+      🧡<%= book.favorites.count %>いいね
+      <% end %></td>
+    <% else %>
+     <td><%= link_to book_favorites_path(book), method: :post do %>
+      ♡<%= book.favorites.count %>いいね
+      <% end %></td>
+      <% end %>
+  <td><%= "コメント件数: #{book.book_comments.count}"%></td>
   </tr>
   <% end %>
   </tbody>
