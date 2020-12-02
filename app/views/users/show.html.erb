@@ -16,16 +16,25 @@
     <th>name</th>
     <th><%= @user.name %></th>
     </tr>
+    <tr>
     <th>introduction</th>
     <th><%= @user.introduction %></th>
     </tr>
+    <tr>
+  <th>follows</th>
+  <th><%= link_to following_user_path(@user) do %>
+    <%= @user.following.count %>
+     <% end %></th>
+  </tr>
+  <tr>
+    <th>followers</th>
+    <th><%= link_to followers_user_path(@user) do %>
+     <%= @user.followers.count %>
+     <% end %></th>
+  </tr>
     </tbody>
     </table>
-<div class="row">
-<%= link_to edit_user_path(@user.id), class:"btn btn-outline-secondary btn-block" do %>
-<i class="fas fa-user-cog"></i>
-<% end %>
-</div>
+ <div><%= render 'follow_form' %></div>
 <h3>New book</h3>
 <%= render "books/newbook", book: @newbook %>
 </div>

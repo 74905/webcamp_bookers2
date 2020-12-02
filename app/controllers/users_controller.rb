@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @users =User.all
     @newbook =Book.new
   end
-  
+
     def create
      @newbook = Book.new(book_params)
      @newbook.user_id = current_user.id
@@ -17,13 +17,13 @@ class UsersController < ApplicationController
    end
   end
 
-  
+
   def show
     @newbook =Book.new
     @user =User.find(params[:id])
     @books =@user.books
   end
-  
+
   def edit
   @user = User.find(params[:id])
    if @user.id != current_user.id
@@ -39,6 +39,16 @@ class UsersController < ApplicationController
   else render :edit
   end
   end
- 
+
+  def following
+    @user = User.find(params[:id])
+    @users = @user.following
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
+  end
+
 
 end

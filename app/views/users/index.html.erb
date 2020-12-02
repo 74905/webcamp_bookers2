@@ -19,6 +19,18 @@
   <tr>
 <th>introduction</th>
 <th><%= current_user.introduction %></th>
+  <tr>
+  <th>follows</th>
+  <th><%= link_to following_user_path(current_user.id) do %>
+    <%= current_user.following.count %>
+     <% end %></th>
+  </tr>
+  <tr>
+    <th>followers</th>
+    <th><%= link_to followers_user_path(current_user.id) do %>
+     <%= current_user.followers.count %>
+     <% end %></th>
+  </tr>
 </tr>
 </tbody>
 </table>
@@ -39,6 +51,7 @@
       <th>image</th>
       <th>name</th>
       <th></th>
+      <th></th>
       </tr>
     </thead>
     <tbody>
@@ -46,10 +59,14 @@
 <tr>
 <td><%=attachment_image_tag user, :profile_image, fot: "jpg", fallback: "no_image.jpg", size: "40x40" %></td>
 <td><%= user.name %></td>
+<% if current_user.following?(user) %>
+<td><%= link_to "フォロー外す", relationships_path(followed_id: user.id), method: :delete %></td>
+<% else %>
+<td><%= link_to "フォロー", relationships_path(followed_id: user.id), method: :post %>
+<% end %></td>
 <td><%= link_to "Show", user_path(user.id) %></td>
 </tr>
 <% end %>
-</tr>
 </tbody>
 </table>
 </div>
