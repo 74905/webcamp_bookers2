@@ -1,0 +1,38 @@
+<% if @users %>
+<h2>Users seach for <%= @word %></h2>
+<table class="table table-striped table-inverse">
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @users.each do |user| %>
+</td><%=attachment_image_tag user, :profile_image, fot: "jpg", fallback: "no_image.jpg", size: "40x40" %></td>
+<td><% end %></td>
+    </tr>
+  </tbody>
+  </table>
+<% else @books %>
+<h2>Books seach for <%= @word %></h2>
+<table class="table table-striped table-inverse">
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>title</th>
+      <th>opinion</th>
+    </tr>
+  </thead>
+  </tbody>
+    <tr>
+<% @books.each do |book| %>
+<td><%=attachment_image_tag book.user, :profile_image, fot: "jpg", fallback: "no_image.jpg", size: "40x40" %></td>
+<td><%= book.title %></td>
+<td><%= book.body %><td>
+<% end %>
+</tr>
+</tbody>
+</table>
+<% end %>

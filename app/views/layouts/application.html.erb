@@ -73,6 +73,15 @@
     </div>
     </div>
     </nav>
+    <div class="row justify-content-center">
+    <%= form_with url: searchs_path, method: :get, local: true do |f| %>
+    <%#= f.select "option", options_for_select[["User", "1"], ["Book", "2"]] %>
+    <%= select_tag "model", options_for_select([["User", "User"],["Book","Book"]]) %>
+    <%= select_tag "search", options_for_select([["完全一致", "perfect"],["前方一致","front"],["後方一致","back"],["部分一致","part"]]) %>
+    <%= f.text_field :word %>
+    <%= f.submit '検索' %>
+    <% end %>
+    </div>
     </header>
     <% if notice %>
 　　<p><%= notice %></p>

@@ -12,4 +12,5 @@ resources :users, only: [:index, :show, :edit, :update] do
     end
 end
 resource :relationships, only: [:create, :destroy]
+get "searchs" => "searchs"
 end
