@@ -18,7 +18,9 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-
+  has_many :user_rooms
+  has_many :chats
+  
   attachment :profile_image
 
 
@@ -33,6 +35,17 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+  
+ 
+  def prefecture_name
+    JpPrefecture::Prefecture.find(code: :prefecture_code).try(:name)
+  end 
+  
+  def prefecture_name=(prefecture_name)
+    self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
+  end
+  
+  
 
 
 end

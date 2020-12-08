@@ -1,0 +1,18 @@
+<h1><%= @user.name %>さんとのチャット</h1>
+<%= render"chat_comment", chat: @chat %>
+<table>
+    <thead>
+        <tr>
+            <td>投稿者名</td>
+            <td>投稿内容</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% @chats.each do |chat| %>
+            <tr>
+                <td><%= chat.user.name %></td>
+                <td><%= chat.message %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

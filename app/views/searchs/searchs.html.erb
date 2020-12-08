@@ -9,11 +9,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <% @users.each do |user| %>
-</td><%=attachment_image_tag user, :profile_image, fot: "jpg", fallback: "no_image.jpg", size: "40x40" %></td>
-<td><% end %></td>
-    </tr>
+    <% @users.each do |user| %>
+<tr>
+<td><%=attachment_image_tag user, :profile_image, fot: "jpg", fallback: "no_image.jpg", size: "40x40" %></td>
+<td><%= user.name %></td>
+</tr>
+<% end %>
+
   </tbody>
   </table>
 <% else @books %>
@@ -26,14 +28,15 @@
       <th>opinion</th>
     </tr>
   </thead>
-  </tbody>
-    <tr>
+  <tbody>
+    
 <% @books.each do |book| %>
+<tr>
 <td><%=attachment_image_tag book.user, :profile_image, fot: "jpg", fallback: "no_image.jpg", size: "40x40" %></td>
 <td><%= book.title %></td>
 <td><%= book.body %><td>
-<% end %>
 </tr>
+<% end %>
 </tbody>
 </table>
 <% end %>

@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class"row">
     <div class"col-lg-5 px-5">
@@ -16,13 +17,27 @@
   </div>
 
   <div class="field">
+    <%= f.label :postcode %><br />
+    <%= f.text_field :postcode, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :prefecture_code %><br />
+    <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name %>
+    <%= f.label :address_city %><br />
+    <%= f.text_field :address_city %>
+    <%= f.label :address_street %><br />
+    <%= f.text_field :address_street %>
+    <%= f.label :address_building %><br />
+    <%= f.text_field :address_building %>
+  <div>
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
-
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>

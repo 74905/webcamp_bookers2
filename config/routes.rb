@@ -13,4 +13,6 @@ resources :users, only: [:index, :show, :edit, :update] do
 end
 resource :relationships, only: [:create, :destroy]
 get "searchs" => "searchs"
+ get 'chat/:id' => 'chats#show', as: 'chat'
+  resources :chats, only: [:create]
 end
